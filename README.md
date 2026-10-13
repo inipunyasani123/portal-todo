@@ -2,7 +2,7 @@
 
 PortalTodo: koleksi 3 aplikasi to-do dengan paradigma berbeda — checklist klasik, papan kanban, dan task manager lengkap.
 
-**Demo live:** https://www.pintuweb.com/aplikasi-to-do
+**Demo live:** https://www.pintuweb.id/aplikasi-to-do
 
 ![Tangkapan layar PortalTodo](public/og.jpg)
 
@@ -42,4 +42,4 @@ Buka http://localhost:3000. Untuk build produksi: `npm run build` lalu `npm star
 
 ---
 
-Dibuat oleh [PintuWeb](https://www.pintuweb.com), jasa pembuatan website.
+Dibuat oleh [PintuWeb](https://www.pintuweb.id), jasa pembuatan website.

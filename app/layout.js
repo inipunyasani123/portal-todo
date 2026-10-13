@@ -3,10 +3,10 @@ import { Lexend } from 'next/font/google';
 
 const lexend = Lexend({ subsets: ['latin'], variable: '--font-lexend', weight: ['300', '400', '600', '800'] });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalTodo","description":"Koleksi 3 aplikasi to-do","url":"https://www.pintuweb.com/aplikasi-to-do","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.com"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.com"},{"@type":"ListItem","position":2,"name":"Aplikasi To-Do","item":"https://www.pintuweb.com/aplikasi-to-do"}]}};
+const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalTodo","description":"Koleksi 3 aplikasi to-do","url":"https://www.pintuweb.id/aplikasi-to-do","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.id"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.id"},{"@type":"ListItem","position":2,"name":"Aplikasi To-Do","item":"https://www.pintuweb.id/aplikasi-to-do"}]}};
 
 export const metadata = {
-  metadataBase: new URL("https://www.pintuweb.com/aplikasi-to-do"),
+  metadataBase: new URL("https://www.pintuweb.id/aplikasi-to-do"),
   title: "PortalTodo — Tiga Cara Menaklukkan Harimu",
   description: "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk papan kanban dengan batas WIP, dan Tuntas untuk tugas dengan kalender.",
   applicationName: "PortalTodo",
@@ -14,11 +14,11 @@ export const metadata = {
   authors: [{ name: "PortalTodo" }],
   creator: "PortalTodo",
   publisher: "PortalTodo",
-  alternates: { canonical: "https://www.pintuweb.com/aplikasi-to-do" },
+  alternates: { canonical: "https://www.pintuweb.id/aplikasi-to-do" },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://www.pintuweb.com/aplikasi-to-do",
+    url: "https://www.pintuweb.id/aplikasi-to-do",
     siteName: "PortalTodo",
     title: "PortalTodo — Tiga Cara Menaklukkan Harimu",
     description: "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk papan kanban dengan batas WIP, dan Tuntas untuk tugas dengan kalender.",
