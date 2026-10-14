@@ -14,9 +14,9 @@ Katalog aplikasi to-do. Gaya buku catatan: kertas bergaris, kartu to-do hidup di
 
 ## Varian yang dipamerkan (3)
 
-- [Hari Ini](https://todo-classic.vercel.app)
-- [Lajur](https://todo-kanban-one.vercel.app)
-- [Tuntas](https://todo-manager-ivory-seven.vercel.app)
+- [Hari Ini](https://todo-classic.pintuweb.id)
+- [Lajur](https://todo-kanban.pintuweb.id)
+- [Tuntas](https://todo-manager.pintuweb.id)
 
 ## Halaman
 

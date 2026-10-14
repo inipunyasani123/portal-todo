@@ -4,7 +4,7 @@
 const nextConfig = {
   basePath: '/aplikasi-to-do',
   async redirects() {
-    // Alamat lama portal-todo.vercel.app di luar basePath -> alamat utama.
+    // Alamat lama portal-todo.pintuweb.id di luar basePath -> alamat utama.
     return [
       { source: '/', destination: 'https://www.pintuweb.id/aplikasi-to-do', basePath: false, permanent: true },
       { source: '/:lama((?!aplikasi-to-do(?:/|$)).+)', destination: 'https://www.pintuweb.id/aplikasi-to-do', basePath: false, permanent: true },
