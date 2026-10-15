@@ -4,8 +4,9 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Check, ArrowDown, ArrowUpRight, ListChecks, MessageCircle, Moon, Zap, Save, Smartphone, PencilRuler, Package, ChevronDown } from 'lucide-react';
 import { templates } from './components/templates-data';
+import { LANJUT, GALERI_LAIN, PINTUWEB } from './components/pintuweb';
 
-const WA = 'https://wa.me/6285190931399?text=Halo%2C%20saya%20tertarik%20aplikasi%20to-do%20di%20PortalTodo';
+const WA = 'https://wa.me/6285190931399?text=Halo%2C%20saya%20tertarik%20aplikasi%20to-do%20di%20PintuWeb';
 
 const HERO_TODO = [
   { t: 'Bangun pagi', done: true },
@@ -19,7 +20,7 @@ const CATATAN = [
   { icon: Zap, title: 'Ringan & instan', desc: 'Tanpa loading berat; ketik, enter, beres. Fokusmu tidak terganggu.' },
   { icon: Smartphone, title: 'Di semua layar', desc: 'Tombol aksi tetap terlihat di layar sentuh; papan kanban bisa diseret dengan menahan kartu.' },
   { icon: PencilRuler, title: 'Data contoh yang hidup', desc: 'Kunjungan pertama diisi tugas contoh bertanggal relatif — tidak pernah basi, langsung terasa dipakai.' },
-  { icon: Package, title: 'Milikmu penuh', desc: 'Source code diserahkan — pasang di domainmu, tanpa langganan.' },
+  { icon: Package, title: 'Milikmu penuh', desc: 'Setelah pelunasan, source code diserahkan dan bisa dipasang di domainmu. Hosting & database termasuk tahun pertama; perpanjangannya tertulis di penawaran.' },
 ];
 
 const TANYA = [
@@ -27,7 +28,7 @@ const TANYA = [
   { q: 'Berapa biaya membuat aplikasi seperti ini?', a: 'Paket Aplikasi Web PintuWeb mulai Rp2 juta (kisaran Rp2–5 juta, bisa lebih untuk fitur besar), dikerjakan 1–2 minggu: login & peran pengguna, kelola data, tampilan kanban/kalender/laporan, ekspor data, plus hosting & database tahun pertama.' },
   { q: 'Apakah data tugas saya aman?', a: 'Data tersimpan lokal di perangkatmu (localStorage) — tidak dikirim ke server mana pun. Privasimu utuh. Versi dengan sinkronisasi cloud tersedia sebagai pengembangan custom.' },
   { q: 'Bedanya ketiga aplikasi ini apa?', a: 'Paradigmanya: Hari Ini untuk daftar harian yang fokus; Lajur untuk alur kerja bertahap dengan batas kerja paralel; Tuntas untuk yang butuh prioritas, tenggat, label, dan kalender.' },
-  { q: 'Bisakah dijadikan aplikasi internal perusahaan?', a: 'Bisa. Kami sering menyesuaikan template ini menjadi tools internal: menambah login, database, dan laporan. Mulai dari template berarti lebih cepat dan hemat.' },
+  { q: 'Bisakah dijadikan aplikasi internal perusahaan?', a: 'Bisa. Template ini bisa dikembangkan menjadi tools internal: menambah login, database, dan laporan. Mulai dari template berarti lebih cepat dan hemat.' },
 ];
 
 export default function PortalTodo() {
@@ -46,7 +47,11 @@ export default function PortalTodo() {
       <header className="sticky top-0 z-40 border-b-[2.5px] border-inktd bg-papertd/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
           <a href="#top" className="flex items-center gap-2 font-display text-lg font-extrabold">
-            <span className="cek"><ListChecks size={14} /></span> PortalTodo
+            <span className="cek"><ListChecks size={14} /></span>
+            <span className="flex flex-col leading-none">
+              PintuWeb{' '}
+              <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ceklis">Aplikasi To-Do</span>
+            </span>
           </a>
           <div className="hidden items-center gap-6 text-sm font-bold text-mutedtd md:flex" role="navigation" aria-label="Navigasi">
             <a href="#koleksi" className="transition hover:text-ceklis">Aplikasi</a>
@@ -227,7 +232,11 @@ export default function PortalTodo() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 text-center sm:grid-cols-3 sm:text-left">
           <div>
             <p className="flex items-center justify-center gap-2 font-display text-lg font-extrabold text-papertd sm:justify-start">
-              <span className="cek !bg-ceklis"><ListChecks size={13} /></span> PortalTodo
+              <span className="cek !bg-ceklis"><ListChecks size={13} /></span>
+              <span className="flex flex-col text-left leading-none">
+                PintuWeb{' '}
+                <span className="mt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-ceklis-terang">Aplikasi To-Do</span>
+              </span>
             </p>
             <p className="mt-2 text-sm leading-relaxed">Tiga cara menaklukkan harimu — Hari Ini, Lajur, dan Tuntas.</p>
           </div>
@@ -247,8 +256,29 @@ export default function PortalTodo() {
             </ul>
           </div>
         </div>
-        <p className="mt-10 border-t border-papertd/10 pt-5 text-center text-xs text-papertd/70">
-          © {new Date().getFullYear()} PortalTodo · bagian dari PintuWeb — centang terakhir milikmu.
+        {/* Lanjut di PintuWeb: harga, layanan, semua demo, dan galeri lain di situs utama */}
+        <nav aria-labelledby="lanjut-pintuweb" className="mx-auto mt-10 max-w-6xl border-t border-papertd/10 pt-8 text-center text-sm sm:text-left">
+          <p id="lanjut-pintuweb" className="font-display text-xs font-bold uppercase tracking-widest text-ceklis-terang">Lanjut di PintuWeb</p>
+          <ul className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
+            {LANJUT.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="inline-flex items-center gap-1.5 rounded-full border-[2px] border-papertd/30 px-4 py-1.5 text-xs font-bold text-papertd transition hover:border-stabilo hover:bg-stabilo hover:text-inktd">
+                  {l.label} <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 font-display text-xs font-bold uppercase tracking-widest text-papertd/60">Daftar lain</p>
+          <ul className="mt-2 flex flex-wrap justify-center gap-x-5 gap-y-2 sm:justify-start">
+            {GALERI_LAIN.map((g) => (
+              <li key={g.path}>
+                <a href={`${PINTUWEB}/${g.path}`} className="underline decoration-papertd/25 underline-offset-4 transition hover:text-papertd hover:decoration-ceklis-terang">{g.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <p className="mx-auto mt-8 max-w-6xl border-t border-papertd/10 pt-5 text-center text-xs text-papertd/70">
+          © {new Date().getFullYear()} PintuWeb · Galeri Aplikasi To-Do — centang terakhir milikmu.
         </p>
       </footer>
     </div>

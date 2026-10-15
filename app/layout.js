@@ -1,33 +1,39 @@
 import './globals.css';
 import { Lexend } from 'next/font/google';
+import { templates } from './components/templates-data';
 
 const lexend = Lexend({ subsets: ['latin'], variable: '--font-lexend', weight: ['300', '400', '600', '800'] });
 
-const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":"PortalTodo","description":"Koleksi 3 aplikasi to-do","url":"https://www.pintuweb.id/aplikasi-to-do","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.id"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.id"},{"@type":"ListItem","position":2,"name":"Aplikasi To-Do","item":"https://www.pintuweb.id/aplikasi-to-do"}]}};
+// Merek di hasil pencarian & pratinjau tautan = PintuWeb. Jumlah demo dihitung dari data, bukan ditulis tangan.
+const URL_PORTAL = 'https://www.pintuweb.id/aplikasi-to-do';
+const TITLE = `Contoh Aplikasi To-Do: ${templates.length} Demo Siap Coba | PintuWeb`;
+const DESCRIPTION = "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk papan kanban dengan batas WIP, dan Tuntas untuk tugas dengan kalender.";
+
+const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":TITLE,"description":DESCRIPTION,"url":URL_PORTAL,"inLanguage":"id-ID","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.id"},"publisher":{"@type":"Organization","name":"PintuWeb","url":"https://www.pintuweb.id"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.id"},{"@type":"ListItem","position":2,"name":"Aplikasi To-Do","item":URL_PORTAL}]}};
 
 export const metadata = {
-  metadataBase: new URL("https://www.pintuweb.id/aplikasi-to-do"),
-  title: "PortalTodo — Tiga Cara Menaklukkan Harimu",
-  description: "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk papan kanban dengan batas WIP, dan Tuntas untuk tugas dengan kalender.",
-  applicationName: "PortalTodo",
+  metadataBase: new URL(URL_PORTAL),
+  title: { default: TITLE, template: '%s | PintuWeb' },
+  description: DESCRIPTION,
+  applicationName: "PintuWeb",
   keywords: ["aplikasi to-do", "template produktivitas", "kanban", "task manager"],
-  authors: [{ name: "PortalTodo" }],
-  creator: "PortalTodo",
-  publisher: "PortalTodo",
-  alternates: { canonical: "https://www.pintuweb.id/aplikasi-to-do" },
+  authors: [{ name: "PintuWeb", url: "https://www.pintuweb.id" }],
+  creator: "PintuWeb",
+  publisher: "PintuWeb",
+  alternates: { canonical: URL_PORTAL },
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://www.pintuweb.id/aplikasi-to-do",
-    siteName: "PortalTodo",
-    title: "PortalTodo — Tiga Cara Menaklukkan Harimu",
-    description: "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk papan kanban dengan batas WIP, dan Tuntas untuk tugas dengan kalender.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "PortalTodo — Tiga Cara Menaklukkan Harimu" }],
+    url: URL_PORTAL,
+    siteName: "PintuWeb",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: TITLE }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PortalTodo — Tiga Cara Menaklukkan Harimu",
-    description: "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk papan kanban dengan batas WIP, dan Tuntas untuk tugas dengan kalender.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: ["/og.jpg"],
   },
   robots: {
