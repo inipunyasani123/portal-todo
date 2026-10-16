@@ -23,6 +23,15 @@ body {
 
 h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
 
+/* Tautan lompat ke konten: tersembunyi sampai difokus papan ketik */
+.lewati {
+  position: fixed; left: 1rem; top: 0.75rem; z-index: 60; transform: translateY(-160%);
+  border: 2.5px solid var(--color-inktd); border-radius: 9999px; background: var(--color-stabilo); color: var(--color-inktd);
+  padding: 0.5rem 1rem; font-weight: 700; font-size: 0.875rem; box-shadow: 3px 3px 0 var(--color-inktd);
+}
+.lewati:focus { transform: none; }
+main:focus { outline: none; }
+
 /* Garis buku catatan */
 .ruled {
   background-image: repeating-linear-gradient(0deg, transparent 0 35px, rgba(29, 36, 32, 0.06) 35px 36px);
@@ -35,10 +44,30 @@ h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
 /* Checkbox dicentang */
 .cek { display: grid; place-items: center; width: 1.4rem; height: 1.4rem; border: 2.5px solid var(--color-inktd); border-radius: 0.4rem; background: var(--color-ceklis); color: #fff; }
 
+/* Kartu hero: jumlah tugas tercentang dihitung CSS counter, ikut berubah saat dicentang */
+.daftar-hari { counter-reset: selesai; }
+.daftar-hari input:checked { counter-increment: selesai; }
+.hitung-selesai::before { content: counter(selesai); }
+
 /* Coretan stabilo */
 .stabilo { background: linear-gradient(transparent 55%, var(--color-stabilo) 55% 92%, transparent 92%); }
 
-@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-.rise { animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+/* Masuk halus untuk elemen pendukung hero (judul tetap langsung tampil demi LCP) */
+@keyframes naik { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+.naik { animation: naik 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.naik-2 { animation-delay: 0.12s; }
 
-:focus-visible { outline: 3px solid var(--color-ceklis); outline-offset: 3px; border-radius: 10px; }
+/* FAQ <details>: buka-tutup halus di peramban yang mendukung */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  .tanya::details-content { height: 0; overflow: clip; transition: height 0.3s ease, content-visibility 0.3s allow-discrete; }
+  .tanya[open]::details-content { height: auto; }
+}
+
+:focus-visible { outline: 3px solid var(--color-ceklis); outline-offset: 3px; }
+footer :focus-visible, .bg-inktd :focus-visible { outline-color: var(--color-ceklis-terang); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

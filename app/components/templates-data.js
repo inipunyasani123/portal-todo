@@ -37,3 +37,7 @@ export const templates = [
     halaman: [['/kalender', 'Kalender'], ['/label', 'Label']],
   },
 ];
+
+/** "https://todo-classic.pintuweb.id" -> "classic-todo" (slug demo di PintuWeb/app/lib/demos.ts). */
+const SLUG = { 'todo-classic': 'classic-todo', 'todo-kanban': 'kanban-board', 'todo-manager': 'task-manager' };
+export const slugOf = (t) => SLUG[new URL(t.url).hostname.split('.')[0]];

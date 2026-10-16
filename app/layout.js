@@ -7,9 +7,25 @@ const lexend = Lexend({ subsets: ['latin'], variable: '--font-lexend', weight: [
 // Merek di hasil pencarian & pratinjau tautan = PintuWeb. Jumlah demo dihitung dari data, bukan ditulis tangan.
 const URL_PORTAL = 'https://www.pintuweb.id/aplikasi-to-do';
 const TITLE = `Contoh Aplikasi To-Do: ${templates.length} Demo Siap Coba | PintuWeb`;
-const DESCRIPTION = "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk papan kanban dengan batas WIP, dan Tuntas untuk tugas dengan kalender.";
+const DESCRIPTION = "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk kanban dengan batas WIP, dan Tuntas dengan kalender.";
 
-const __jsonld = {"@context":"https://schema.org","@type":"CollectionPage","name":TITLE,"description":DESCRIPTION,"url":URL_PORTAL,"inLanguage":"id-ID","isPartOf":{"@type":"WebSite","name":"PintuWeb","url":"https://www.pintuweb.id"},"publisher":{"@type":"Organization","name":"PintuWeb","url":"https://www.pintuweb.id"},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"PintuWeb","item":"https://www.pintuweb.id"},{"@type":"ListItem","position":2,"name":"Aplikasi To-Do","item":URL_PORTAL}]}};
+// CollectionPage + daftar aplikasinya (ItemList) + jejak. Data dari templates-data, jadi ikut bertambah sendiri.
+const __jsonld = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: TITLE,
+  description: DESCRIPTION,
+  url: URL_PORTAL,
+  inLanguage: "id-ID",
+  isPartOf: { "@type": "WebSite", name: "PintuWeb", url: "https://www.pintuweb.id" },
+  publisher: { "@type": "Organization", name: "PintuWeb", url: "https://www.pintuweb.id" },
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: templates.length,
+    itemListElement: templates.map((t, i) => ({ "@type": "ListItem", position: i + 1, name: `${t.name} — ${t.tagline}`, url: t.url })),
+  },
+  breadcrumb: { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "PintuWeb", item: "https://www.pintuweb.id" }, { "@type": "ListItem", position: 2, name: "Aplikasi To-Do", item: URL_PORTAL }] },
+};
 
 export const metadata = {
   metadataBase: new URL(URL_PORTAL),
@@ -47,9 +63,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="id" className={lexend.variable}>
       <body className="antialiased">
-        <main>{children}</main>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(__jsonld) }} />
-        </body>
+        {children}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(__jsonld) }} />
+      </body>
     </html>
   );
 }
