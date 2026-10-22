@@ -14,7 +14,7 @@ export const wa = (teks) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponen
 export const PAKET = {
   nama: 'Aplikasi Web',
   mulai: 'Rp2 juta',
-  kisaran: 'Rp2–5 juta',
+  kisaran: 'Rp2–10 juta',
   waktu: '1–2 minggu',
 };
 
