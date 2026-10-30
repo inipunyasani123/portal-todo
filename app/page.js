@@ -1,9 +1,11 @@
-import Image from 'next/image';
-import { Check, ArrowDown, ArrowUpRight, ListChecks, MessageCircle, Moon, Zap, Save, Smartphone, PencilRuler, Package, ChevronDown } from 'lucide-react';
+import Image, { getImageProps } from 'next/image';
+import GaleriMenu from './components/galeri-menu';
+import { SorotKartu, BilahLengket } from './components/perilaku';
+import { Check, ArrowDown, ArrowUpRight, MessageCircle, Moon, Zap, Save, Smartphone, PencilRuler, Package, ChevronDown } from 'lucide-react';
 import { templates, slugOf } from './components/templates-data';
-import { LANJUT, GALERI_LAIN, PINTUWEB, PAKET, WA_DISPLAY, wa } from './components/pintuweb';
+import { LANJUT, BACA_JUGA, GALERI_LAIN, PINTUWEB, PAKET, WA_DISPLAY, JENIS, wa, waDemo } from './components/pintuweb';
 
-const WA = wa('Halo PintuWeb, saya tertarik aplikasi to-do. Boleh minta info?');
+const WA = wa(`Halo PintuWeb, saya tertarik ${JENIS}. Boleh minta info?`);
 const N = templates.length;
 
 // Kartu hero: checkbox sungguhan (tanpa JS), yang terakhir sengaja belum dicentang.
@@ -49,12 +51,27 @@ function TitikJendela() {
 function Logo({ kecil = false }) {
   return (
     <>
-      <span className={`cek ${kecil ? '!bg-ceklis' : ''}`} aria-hidden="true"><ListChecks size={kecil ? 13 : 14} /></span>
+      {/* Logo pintu asli PintuWeb (367×512, tidak diubah); di latar gelap diberi alas putih membulat */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/aplikasi-to-do/logo-pintuweb.png" alt="" width={22} height={30} className={kecil ? 'h-[30px] w-auto rounded-md bg-white p-[3px]' : 'h-[30px] w-auto'} />
       <span className="flex flex-col text-left leading-none">
         PintuWeb{' '}
         <span className={`mt-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${kecil ? 'text-ceklis-terang' : 'text-ceklis'}`}>Aplikasi To-Do</span>
       </span>
     </>
+  );
+}
+
+/** Gambar kartu: potret ponsel di < 768 px, gambar desktop di layar lebar. */
+function GambarDemo({ t }) {
+  const potret = t.image.replace(/\.webp$/, '-m.webp');
+  const d = getImageProps({ src: t.image, alt: '', fill: true, sizes: '540px', className: 'object-cover object-top transition duration-500 group-hover:scale-[1.02]' }).props;
+  const m = getImageProps({ src: potret, alt: '', fill: true, sizes: 'calc(100vw - 37px)', className: 'object-cover object-top' }).props;
+  return (
+    <picture>
+      <source media="(max-width: 767px)" srcSet={m.srcSet} sizes={m.sizes} />
+      <img {...d} alt="" />
+    </picture>
   );
 }
 
@@ -64,10 +81,11 @@ export default function PortalTodo() {
       <a href="#konten" className="lewati">Lewati ke konten</a>
       {/* Jejak: portal ini bagian dari PintuWeb */}
       <nav aria-label="Jejak" className="bg-inktd text-xs text-papertd">
-        <ol className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-1.5 sm:px-6">
+        <ol className="mx-auto flex max-w-6xl items-center gap-2 px-4 py-1 sm:px-6">
           <li><a href={PINTUWEB} className="font-semibold underline-offset-4 hover:underline">PintuWeb</a></li>
           <li aria-hidden="true" className="opacity-60">/</li>
-          <li aria-current="page">Aplikasi To-Do</li>
+          <li aria-current="page">To-Do &amp; Produktivitas</li>
+          <li className="ms-auto list-none"><GaleriMenu daftar={GALERI_LAIN} base={PINTUWEB} /></li>
         </ol>
       </nav>
 
@@ -81,27 +99,27 @@ export default function PortalTodo() {
             <a href="#catatan" className="transition hover:text-ceklis">Fitur</a>
             <a href="#tanya" className="transition hover:text-ceklis">FAQ</a>
           </nav>
-          <a href={WA} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded-full border-[2.5px] border-inktd bg-ceklis px-4 py-2 text-sm font-bold text-white shadow-[3px_3px_0_var(--color-inktd)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_var(--color-inktd)] sm:px-5">
-            Pesan Aplikasi
+          <a href={WA} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded-full border-[2.5px] border-inktd bg-ceklis px-3.5 py-2 text-[13px] sm:text-sm font-bold text-white shadow-[3px_3px_0_var(--color-inktd)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_var(--color-inktd)] sm:px-5">
+            Pesan aplikasi web
           </a>
         </div>
       </header>
 
       <main id="konten" tabIndex={-1}>
         {/* Hero */}
-        <section className="px-4 pb-12 pt-10 sm:px-6 sm:pb-14 sm:pt-16">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
+        <section id="hero" className="px-4 pb-8 pt-6 sm:px-6 sm:pb-14 sm:pt-16">
+          <div className="mx-auto grid max-w-6xl items-center gap-4 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
             <div>
               <span className="naik inline-block rounded-full border-[2.5px] border-inktd bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wide shadow-[3px_3px_0_var(--color-inktd)]">
                 {N} aplikasi · {N} paradigma
               </span>
-              <h1 className="mt-6 font-display text-[2.6rem] font-extrabold leading-[1.06] sm:text-6xl">
+              <h1 className="mt-4 font-display text-[2rem] font-extrabold leading-[1.08] sm:mt-6 sm:text-6xl">
                 Selesaikan tugasmu, <span className="stabilo">apapun gayamu</span>.
               </h1>
-              <p className="mt-5 max-w-md text-lg font-light text-mutedtd">
+              <p className="mt-5 hidden max-w-md text-lg font-light text-mutedtd sm:block">
                 Daftar harian, papan kanban, atau pengelola tugas dengan kalender — pilih cara kerjamu, kami siapkan aplikasinya.
               </p>
-              <div className="naik naik-2 mt-8 flex flex-wrap items-center gap-x-5 gap-y-4">
+              <div className="naik naik-2 mt-5 flex flex-wrap sm:mt-8 items-center gap-x-5 gap-y-4">
                 <a href="#koleksi" className="inline-flex items-center gap-2 rounded-full border-[2.5px] border-inktd bg-inktd px-7 py-3.5 font-display text-sm font-bold text-papertd shadow-[4px_4px_0_rgba(22,163,74,0.5)] transition hover:translate-y-0.5">
                   Lihat Ketiganya <ArrowDown size={16} aria-hidden="true" />
                 </a>
@@ -110,8 +128,24 @@ export default function PortalTodo() {
               </div>
             </div>
 
+            {/* Strip demo ponsel: demo terlihat di layar pertama */}
+            <nav aria-label="Loncat ke demo" className="-mx-4 md:hidden">
+              <ul className="flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 pt-1 [scroll-padding-inline:1rem]">
+                {templates.map((t) => (
+                  <li key={t.name} className="shrink-0 snap-start">
+                    <a href={`#${slugOf(t)}`} className="block w-[104px]">
+                      <span className="relative block h-[190px] w-[104px] overflow-hidden rounded-xl border-[2.5px] border-inktd bg-white shadow-[3px_3px_0_var(--color-inktd)]">
+                        <Image src={t.image.replace(/\.webp$/, '-m.webp')} alt="" fill sizes="104px" loading="eager" className="object-cover object-top" />
+                      </span>
+                      <span className="mt-2 block font-display text-sm font-extrabold">{t.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
             {/* Kartu to-do sungguhan: centang sendiri yang terakhir */}
-            <div className="naik naik-2 window w-full max-w-sm rotate-1 justify-self-center md:max-w-md md:justify-self-end">
+            <div className="naik naik-2 window hidden w-full max-w-sm rotate-1 justify-self-center md:block md:max-w-md md:justify-self-end">
               <div className="window-bar">
                 <TitikJendela />
                 <span className="ml-2 text-xs font-semibold text-mutedtd">hari-ini.app</span>
@@ -145,7 +179,7 @@ export default function PortalTodo() {
         <section id="koleksi" aria-label="Tiga aplikasi to-do" className="scroll-mt-[64px] px-4 pb-16 sm:px-6 sm:pb-20">
           <ul className="mx-auto max-w-6xl space-y-14 sm:space-y-16">
             {templates.map((t, i) => (
-              <li key={t.name} id={slugOf(t)} className={`grid items-center gap-6 md:grid-cols-2 md:gap-8 ${i % 2 ? 'md:[&>*:first-child]:order-2' : ''}`}>
+              <li key={t.name} id={slugOf(t)} data-demo={slugOf(t)} className={`grid items-center gap-6 md:grid-cols-2 md:gap-8 ${i % 2 ? 'md:[&>*:first-child]:order-2' : ''}`}>
                 {/* Jendela aplikasi: pratinjau (tautan untuk tetikus; papan ketik memakai tombol "Buka demo") */}
                 <div className="window group">
                   <div className="window-bar">
@@ -153,8 +187,8 @@ export default function PortalTodo() {
                     <span className="ml-2 text-xs font-semibold text-mutedtd" aria-hidden="true">{t.berkas}.app</span>
                   </div>
                   <a href={t.url} target="_blank" rel="noopener noreferrer" className="block" tabIndex={-1} aria-hidden="true">
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      <Image src={t.image} alt="" fill sizes="(max-width: 767px) calc(100vw - 37px), 540px" className="object-cover object-top transition duration-500 group-hover:scale-[1.02]" />
+                    <div className="relative aspect-[4/5] overflow-hidden md:aspect-[16/10]">
+                      <GambarDemo t={t} />
                     </div>
                   </a>
                 </div>
@@ -181,10 +215,11 @@ export default function PortalTodo() {
                     <a href={t.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1.5 rounded-full border-[2.5px] border-inktd bg-inktd px-5 font-display text-sm font-bold text-papertd shadow-[3px_3px_0_rgba(22,163,74,0.5)] transition hover:translate-y-0.5">
                       Buka demo<span className="sr-only"> {t.name} (tab baru)</span> <ArrowUpRight size={15} aria-hidden="true" />
                     </a>
-                    <a href={wa(`Halo PintuWeb, saya tertarik aplikasi ${t.name} (${t.tagline.toLowerCase()}). Boleh minta info?`)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1.5 rounded-full border-[2.5px] border-inktd bg-white px-5 font-display text-sm font-bold text-inktd transition hover:bg-stabilo">
-                      Pesan versi ini<span className="sr-only"> lewat WhatsApp</span>
+                    <a href={waDemo(t.name, t.url)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-1.5 rounded-full border-[2.5px] border-inktd bg-white px-5 font-display text-sm font-bold text-inktd transition hover:bg-stabilo">
+                      Pesan yang mirip<span className="sr-only"> dengan {t.name} lewat WhatsApp</span>
                     </a>
                   </div>
+                  <p className="mt-3 text-sm font-semibold text-mutedtd">Mulai <span className="stabilo px-1 font-extrabold text-inktd">{PAKET.mulai}</span> <span aria-hidden="true" className="mx-0.5 text-ceklis">·</span> {PAKET.waktu}</p>
                 </div>
               </li>
             ))}
@@ -254,7 +289,7 @@ export default function PortalTodo() {
         </section>
       </main>
 
-      <footer className="border-t border-papertd/10 bg-inktd px-4 pb-6 pt-10 text-papertd/75 sm:px-6">
+      <footer className="border-t border-papertd/10 bg-inktd px-4 pb-24 pt-10 md:pb-6 text-papertd/75 sm:px-6">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
           <div className="col-span-2 sm:col-span-1">
             <p className="flex items-center gap-2 font-display text-lg font-extrabold text-papertd"><Logo kecil /></p>
@@ -288,6 +323,16 @@ export default function PortalTodo() {
               </li>
             ))}
           </ul>
+          <p id="baca-juga" className="mt-6 font-display text-xs font-bold uppercase tracking-widest text-papertd/70">Baca juga</p>
+          <ul aria-labelledby="baca-juga" className="mt-2 flex flex-wrap gap-2.5">
+            {BACA_JUGA.map((l) => (
+              <li key={l.href}>
+                <a href={l.href} className="inline-flex min-h-9 items-center gap-1.5 rounded-full border-[2px] border-papertd/30 px-4 text-xs font-bold text-papertd transition hover:border-stabilo hover:bg-stabilo hover:text-inktd">
+                  {l.label} <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
           <p className="mt-6 font-display text-xs font-bold uppercase tracking-widest text-papertd/70">Daftar lain</p>
           <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
             {GALERI_LAIN.map((g) => (
@@ -301,6 +346,8 @@ export default function PortalTodo() {
           © {new Date().getFullYear()} PintuWeb · Galeri Aplikasi To-Do — centang terakhir milikmu.
         </p>
       </footer>
+      <SorotKartu />
+      <BilahLengket waHref={WA} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_LD) }} />
     </div>
   );

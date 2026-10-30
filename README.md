@@ -43,3 +43,13 @@ Buka http://localhost:3000. Untuk build produksi: `npm run build` lalu `npm star
 ---
 
 Dibuat oleh [PintuWeb](https://www.pintuweb.id), jasa pembuatan website.
+
+## Tautan langsung per demo
+
+Kartu demo memakai `id` = slug demo di PintuWeb (`app/lib/demos.ts`). Membuka `/aplikasi-to-do#<slug>` menggulir ke kartu dan menyorotnya ±2 detik.
+
+- `classic-todo` — Hari Ini
+- `kanban-board` — Lajur
+- `task-manager` — Tuntas
+
+Gambar demo: `public/images/todo/<nama>.webp` (desktop) dan `<nama>-m.webp` (potret ponsel 390×844 @2x); setelah mengganti, jalankan `node scripts/gambar-varian.mjs`. Sumbernya dicatat di `public/images/SUMBER.md`.

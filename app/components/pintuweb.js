@@ -18,26 +18,35 @@ export const PAKET = {
   waktu: '1–2 minggu',
 };
 
-/** Galeri yang tayang di www.pintuweb.id/<path> (lihat lib/portals.ts di PintuWeb). */
+/** Galeri yang tayang di www.pintuweb.id/<path> (lihat lib/portals.ts di PintuWeb), urutan menu "Galeri lain". */
 export const GALERI = [
   { path: 'landing-page', label: 'Landing Page' },
-  { path: 'link-in-bio', label: 'Link in Bio' },
-  { path: 'kontes-desain', label: 'Kontes Desain' },
-  { path: 'undangan-digital', label: 'Undangan Digital' },
-  { path: 'website-portofolio', label: 'Website Portofolio' },
-  { path: 'website-reservasi', label: 'Website Reservasi' },
-  { path: 'website-properti', label: 'Website Properti' },
-  { path: 'aplikasi-to-do', label: 'Aplikasi To-Do' },
   { path: 'toko-online', label: 'Toko Online' },
-  { path: 'menu-digital', label: 'Menu Digital' },
   { path: 'aplikasi-mobile', label: 'Aplikasi Mobile' },
+  { path: 'menu-digital', label: 'Menu Digital' },
+  { path: 'link-in-bio', label: 'Link in Bio' },
+  { path: 'kontes-desain', label: 'Konsep Desain' },
+  { path: 'undangan-digital', label: 'Undangan Digital' },
+  { path: 'website-portofolio', label: 'Portofolio Pribadi' },
+  { path: 'website-reservasi', label: 'Reservasi & Booking' },
+  { path: 'website-properti', label: 'Properti' },
+  { path: 'aplikasi-to-do', label: 'To-Do & Produktivitas' },
 ];
 
 export const GALERI_LAIN = GALERI.filter((g) => g.path !== 'aplikasi-to-do');
+
+/** Pesan WhatsApp "Pesan yang mirip" untuk satu demo. */
+export const JENIS = 'aplikasi web';
+export const waDemo = (nama, url) => wa(`Halo PintuWeb, saya tertarik ${JENIS} seperti contoh ${nama} (${url}). Boleh minta info?`);
 
 /** Paket harga (lib/packages.ts: aplikasi-web), halaman layanan, dan galeri demo PintuWeb untuk kategori ini. */
 export const LANJUT = [
   { href: `${PINTUWEB}/paket#aplikasi-web`, label: 'Harga paket Aplikasi Web' },
   { href: `${PINTUWEB}/services/website-custom`, label: 'Jasa website custom & aplikasi web' },
   { href: `${PINTUWEB}/demo#todo`, label: 'Semua demo PintuWeb' },
+];
+
+/** Artikel terkait di www.pintuweb.id (grup "Baca juga"). */
+export const BACA_JUGA = [
+  { href: `${PINTUWEB}/artikel/harga-pembuatan-aplikasi`, label: 'Harga pembuatan aplikasi: Android, kasir, dan web' },
 ];

@@ -72,3 +72,7 @@ footer :focus-visible, .bg-inktd :focus-visible { outline-color: var(--color-cek
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* Sorotan kartu demo saat dibuka lewat #slug: cincin stabilo + garis, bukan kedip */
+[data-demo] { scroll-margin-top: 96px; border-radius: 1.5rem; }
+.sorot { outline: 3px solid var(--color-inktd); outline-offset: 10px; box-shadow: 0 0 0 10px rgba(253, 224, 71, 0.55); }
