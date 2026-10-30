@@ -37,7 +37,7 @@ export const GALERI_LAIN = GALERI.filter((g) => g.path !== 'aplikasi-to-do');
 
 /** Pesan WhatsApp "Pesan yang mirip" untuk satu demo. */
 export const JENIS = 'aplikasi web';
-export const waDemo = (nama, url) => wa(`Halo PintuWeb, saya tertarik ${JENIS} seperti contoh ${nama} (${url}). Boleh minta info?`);
+export const waDemo = (nama, url) => wa(`Halo PintuWeb, saya mau ${JENIS} seperti contoh ${nama} (${url}). Boleh minta info?`);
 
 /** Paket harga (lib/packages.ts: aplikasi-web), halaman layanan, dan galeri demo PintuWeb untuk kategori ini. */
 export const LANJUT = [

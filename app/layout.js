@@ -7,7 +7,7 @@ const lexend = Lexend({ subsets: ['latin'], variable: '--font-lexend', weight: [
 // Merek di hasil pencarian & pratinjau tautan = PintuWeb. Jumlah demo dihitung dari data, bukan ditulis tangan.
 const URL_PORTAL = 'https://www.pintuweb.id/aplikasi-to-do';
 const TITLE = `Contoh Aplikasi To-Do: ${templates.length} Demo Siap Coba | PintuWeb`;
-const DESCRIPTION = "Tiga aplikasi daftar tugas dengan paradigma berbeda: Hari Ini untuk daftar harian, Lajur untuk kanban dengan batas WIP, dan Tuntas dengan kalender.";
+const DESCRIPTION = "Contoh aplikasi to-do dan kanban: daftar tugas untuk tim kecil, catat, bagi, dan centang. Bisa dicoba langsung.";
 
 // CollectionPage + daftar aplikasinya (ItemList) + jejak. Data dari templates-data, jadi ikut bertambah sendiri.
 const __jsonld = {

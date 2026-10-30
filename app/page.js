@@ -16,20 +16,20 @@ const HERO_TODO = [
 ];
 
 const CATATAN = [
-  { icon: Save, title: 'Tersimpan otomatis', desc: 'Tugas tersimpan di perangkatmu — tutup browser, semuanya masih ada.' },
-  { icon: Moon, title: 'Mode gelap', desc: 'Ketiganya punya mode terang dan gelap, dan keduanya lolos uji kontras WCAG AA.' },
-  { icon: Zap, title: 'Ringan & instan', desc: 'Tanpa loading berat; ketik, enter, beres. Fokusmu tidak terganggu.' },
-  { icon: Smartphone, title: 'Di semua layar', desc: 'Tombol aksi tetap terlihat di layar sentuh; papan kanban bisa diseret dengan menahan kartu.' },
-  { icon: PencilRuler, title: 'Data contoh yang hidup', desc: 'Kunjungan pertama diisi tugas contoh bertanggal relatif — tidak pernah basi, langsung terasa dipakai.' },
-  { icon: Package, title: 'Milikmu penuh', desc: 'Setelah pelunasan, source code diserahkan dan bisa dipasang di domainmu. Hosting & database termasuk tahun pertama; perpanjangannya tertulis di penawaran.' },
+  { icon: Save, title: 'Tersimpan otomatis', desc: 'Tugas tersimpan di perangkatmu. Tutup browser, tugas tetap ada.' },
+  { icon: Moon, title: 'Mode terang dan gelap', desc: 'Pilih yang nyaman di mata.' },
+  { icon: Zap, title: 'Ringan dan cepat', desc: 'Ketik, enter, beres.' },
+  { icon: Smartphone, title: 'Enak dibuka di HP', desc: 'Tombol mudah dijangkau dan kartu bisa digeser dengan jari.' },
+  { icon: PencilRuler, title: 'Sudah ada contoh tugas', desc: 'Langsung terisi contoh supaya kamu bisa mencoba.' },
+  { icon: Package, title: 'Jadi milikmu', desc: 'Setelah lunas, aplikasinya milikmu. Hosting tahun pertama sudah termasuk.' },
 ];
 
 const TANYA = [
-  { q: 'Aplikasi ini untuk pribadi atau tim?', a: 'Ketiganya dirancang untuk produktivitas pribadi dan tim kecil. Untuk kolaborasi real-time multi-user, kami bisa kembangkan versi custom dengan backend — tanyakan saja.' },
-  { q: 'Berapa biaya membuat aplikasi seperti ini?', a: `Paket ${PAKET.nama} PintuWeb mulai ${PAKET.mulai} (kisaran ${PAKET.kisaran}, bisa lebih untuk fitur besar), dikerjakan ${PAKET.waktu}: login & peran pengguna, kelola data, tampilan kanban/kalender/laporan, ekspor data, plus hosting & database tahun pertama.` },
-  { q: 'Apakah data tugas saya aman?', a: 'Data tersimpan lokal di perangkatmu (localStorage) — tidak dikirim ke server mana pun. Privasimu utuh. Versi dengan sinkronisasi cloud tersedia sebagai pengembangan custom.' },
-  { q: 'Bedanya ketiga aplikasi ini apa?', a: 'Paradigmanya: Hari Ini untuk daftar harian yang fokus; Lajur untuk alur kerja bertahap dengan batas kerja paralel; Tuntas untuk yang butuh prioritas, tenggat, label, dan kalender.' },
-  { q: 'Bisakah dijadikan aplikasi internal perusahaan?', a: 'Bisa. Template ini bisa dikembangkan menjadi tools internal: menambah login, database, dan laporan. Mulai dari template berarti lebih cepat dan hemat.' },
+  { q: 'Apa itu aplikasi to-do dan kanban?', a: 'Aplikasi to-do adalah daftar tugas yang bisa dicentang. Kanban adalah papan kartu Antre, Dikerjakan, Selesai. Cocok untuk tim kecil: catat, bagi, centang.' },
+  { q: 'Untuk pribadi atau tim?', a: 'Bisa dua-duanya. Kalau tim perlu berbagi tugas dalam satu akun, kami bisa buatkan versi khusus.' },
+  { q: 'Berapa biayanya?', a: `Paket ${PAKET.nama} mulai ${PAKET.mulai} (kisaran ${PAKET.kisaran}). Dikerjakan ${PAKET.waktu}.` },
+  { q: 'Apakah data tugas saya aman?', a: 'Di contoh ini, data hanya tersimpan di perangkatmu dan tidak dikirim ke mana pun. Untuk simpan di server, kami bisa buatkan.' },
+  { q: 'Apa bedanya ketiga aplikasi ini?', a: 'Hari Ini untuk daftar harian. Lajur untuk papan kartu tugas. Tuntas untuk tugas dengan tenggat dan kalender.' },
 ];
 
 const FAQ_LD = {
@@ -95,9 +95,9 @@ export default function PortalTodo() {
             <Logo />
           </a>
           <nav aria-label="Navigasi halaman" className="hidden items-center gap-6 text-sm font-bold text-mutedtd md:flex">
-            <a href="#koleksi" className="transition hover:text-ceklis">Aplikasi</a>
+            <a href="#koleksi" className="transition hover:text-ceklis">Contoh</a>
             <a href="#catatan" className="transition hover:text-ceklis">Fitur</a>
-            <a href="#tanya" className="transition hover:text-ceklis">FAQ</a>
+            <a href="#tanya" className="transition hover:text-ceklis">Tanya Jawab</a>
           </nav>
           <a href={WA} target="_blank" rel="noopener noreferrer" className="shrink-0 rounded-full border-[2.5px] border-inktd bg-ceklis px-3.5 py-2 text-[13px] sm:text-sm font-bold text-white shadow-[3px_3px_0_var(--color-inktd)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_var(--color-inktd)] sm:px-5">
             Pesan aplikasi web
@@ -111,17 +111,17 @@ export default function PortalTodo() {
           <div className="mx-auto grid max-w-6xl items-center gap-4 md:grid-cols-[1.1fr_0.9fr] md:gap-12">
             <div>
               <span className="naik inline-block rounded-full border-[2.5px] border-inktd bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-wide shadow-[3px_3px_0_var(--color-inktd)]">
-                {N} aplikasi · {N} paradigma
+                {N} contoh · bisa dicoba
               </span>
               <h1 className="mt-4 font-display text-[2rem] font-extrabold leading-[1.08] sm:mt-6 sm:text-6xl">
                 Selesaikan tugasmu, <span className="stabilo">apapun gayamu</span>.
               </h1>
               <p className="mt-5 hidden max-w-md text-lg font-light text-mutedtd sm:block">
-                Daftar harian, papan kanban, atau pengelola tugas dengan kalender — pilih cara kerjamu, kami siapkan aplikasinya.
+                Daftar tugas untuk tim kecil: catat, bagi, centang. Pilih gaya kerjamu.
               </p>
               <div className="naik naik-2 mt-5 flex flex-wrap sm:mt-8 items-center gap-x-5 gap-y-4">
                 <a href="#koleksi" className="inline-flex items-center gap-2 rounded-full border-[2.5px] border-inktd bg-inktd px-7 py-3.5 font-display text-sm font-bold text-papertd shadow-[4px_4px_0_rgba(22,163,74,0.5)] transition hover:translate-y-0.5">
-                  Lihat Ketiganya <ArrowDown size={16} aria-hidden="true" />
+                  Lihat Contoh <ArrowDown size={16} aria-hidden="true" />
                 </a>
                 {/* Ringkasan paket: angka dari PAKET (PintuWeb packages.ts) */}
                 <p className="text-sm font-semibold text-inktd/80">Mulai <span className="stabilo px-1 font-extrabold">{PAKET.mulai}</span> <span className="whitespace-nowrap"><span aria-hidden="true" className="mx-1 text-ceklis">·</span>{PAKET.waktu}</span></p>
@@ -166,7 +166,7 @@ export default function PortalTodo() {
                   ))}
                 </ul>
                 <p className="mt-4 flex items-center justify-between gap-3 border-t-2 border-dashed border-inktd/15 pt-3 text-xs text-mutedtd">
-                  <span>Coba centang yang terakhir — begitulah rasanya.</span>
+                  <span>Coba centang yang terakhir.</span>
                   {/* Dihitung CSS dari centangan sungguhan (tanpa JS) */}
                   <span className="hitung-selesai shrink-0 font-bold text-ceklis" aria-hidden="true">/{HERO_TODO.length}</span>
                 </p>
@@ -176,7 +176,7 @@ export default function PortalTodo() {
         </section>
 
         {/* Showcase rows */}
-        <section id="koleksi" aria-label="Tiga aplikasi to-do" className="scroll-mt-[64px] px-4 pb-16 sm:px-6 sm:pb-20">
+        <section id="koleksi" aria-label="Contoh aplikasi to-do" className="scroll-mt-[64px] px-4 pb-16 sm:px-6 sm:pb-20">
           <ul className="mx-auto max-w-6xl space-y-14 sm:space-y-16">
             {templates.map((t, i) => (
               <li key={t.name} id={slugOf(t)} data-demo={slugOf(t)} className={`grid items-center gap-6 md:grid-cols-2 md:gap-8 ${i % 2 ? 'md:[&>*:first-child]:order-2' : ''}`}>
@@ -230,8 +230,8 @@ export default function PortalTodo() {
         <section id="catatan" aria-labelledby="judul-catatan" className="scroll-mt-[64px] border-t-[2.5px] border-inktd bg-white px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="sm:text-center">
-              <p className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ceklis">Sudah termasuk</p>
-              <h2 id="judul-catatan" className="mt-2 font-display text-3xl font-extrabold md:text-4xl">Di ketiga aplikasi, <span className="stabilo">tanpa terkecuali</span></h2>
+              <p className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ceklis">Fitur</p>
+              <h2 id="judul-catatan" className="mt-2 font-display text-3xl font-extrabold md:text-4xl">Fitur di <span className="stabilo">semua contoh</span></h2>
             </div>
             <ul className="mt-8 grid grid-cols-1 gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
               {CATATAN.map((c) => (
@@ -251,8 +251,8 @@ export default function PortalTodo() {
         <section id="tanya" aria-labelledby="judul-tanya" className="scroll-mt-[64px] px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-3xl">
             <div className="sm:text-center">
-              <p className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ceklis">FAQ</p>
-              <h2 id="judul-tanya" className="mt-2 font-display text-3xl font-extrabold md:text-4xl">Masih ada di <span className="stabilo">daftar tanya?</span></h2>
+              <p className="font-display text-xs font-bold uppercase tracking-[0.25em] text-ceklis">Tanya Jawab</p>
+              <h2 id="judul-tanya" className="mt-2 font-display text-3xl font-extrabold md:text-4xl">Yang sering <span className="stabilo">ditanya</span></h2>
             </div>
             <div className="mt-8 space-y-3 sm:mt-10 sm:space-y-4">
               {TANYA.map((t, i) => (
@@ -279,9 +279,9 @@ export default function PortalTodo() {
         <section className="border-t-[2.5px] border-inktd bg-inktd px-4 py-16 text-center text-papertd sm:px-6">
           <div className="mx-auto max-w-xl">
             <p className="font-display text-2xl font-extrabold leading-snug md:text-4xl">
-              <span className="text-ceklis-terang" aria-hidden="true">✓</span> Pilih gaya &nbsp; <span className="text-ceklis-terang" aria-hidden="true">✓</span> Chat kami &nbsp; <span className="text-stabilo" aria-hidden="true">☐</span> Mulai produktif
+              <span className="text-ceklis-terang" aria-hidden="true">✓</span> Pilih contoh &nbsp; <span className="text-ceklis-terang" aria-hidden="true">✓</span> Chat kami &nbsp; <span className="text-stabilo" aria-hidden="true">☐</span> Mulai produktif
             </p>
-            <p className="mt-4 text-papertd/80">Satu langkah lagi. Centang sendiri yang terakhir.</p>
+            <p className="mt-4 text-papertd/80">Ceritakan kebutuhanmu, kami bantu buatkan.</p>
             <a href={WA} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-full bg-ceklis px-8 py-4 font-display text-sm font-bold text-white transition hover:scale-[1.03] active:scale-95">
               <MessageCircle size={17} aria-hidden="true" /> Chat WhatsApp
             </a>
@@ -293,14 +293,14 @@ export default function PortalTodo() {
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3">
           <div className="col-span-2 sm:col-span-1">
             <p className="flex items-center gap-2 font-display text-lg font-extrabold text-papertd"><Logo kecil /></p>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed">Tiga cara menaklukkan harimu — Hari Ini, Lajur, dan Tuntas.</p>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed">Tiga contoh aplikasi to-do: Hari Ini, Lajur, dan Tuntas.</p>
           </div>
           <nav aria-labelledby="kaki-jelajahi" className="text-sm">
             <p id="kaki-jelajahi" className="font-display text-xs font-bold uppercase tracking-widest text-ceklis-terang">Jelajahi</p>
             <ul className="mt-3 space-y-1">
-              <li><a href="#koleksi" className="inline-block py-1 transition hover:text-papertd">Tiga Aplikasi</a></li>
-              <li><a href="#catatan" className="inline-block py-1 transition hover:text-papertd">Fitur Bersama</a></li>
-              <li><a href="#tanya" className="inline-block py-1 transition hover:text-papertd">FAQ</a></li>
+              <li><a href="#koleksi" className="inline-block py-1 transition hover:text-papertd">Semua Contoh</a></li>
+              <li><a href="#catatan" className="inline-block py-1 transition hover:text-papertd">Fitur</a></li>
+              <li><a href="#tanya" className="inline-block py-1 transition hover:text-papertd">Tanya Jawab</a></li>
             </ul>
           </nav>
           <div className="text-sm">
@@ -333,7 +333,7 @@ export default function PortalTodo() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 font-display text-xs font-bold uppercase tracking-widest text-papertd/70">Daftar lain</p>
+          <p className="mt-6 font-display text-xs font-bold uppercase tracking-widest text-papertd/70">Galeri lain</p>
           <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-1">
             {GALERI_LAIN.map((g) => (
               <li key={g.path}>
@@ -343,7 +343,7 @@ export default function PortalTodo() {
           </ul>
         </nav>
         <p className="mx-auto mt-8 max-w-6xl border-t border-papertd/10 pt-5 text-xs text-papertd/75 sm:text-center">
-          © {new Date().getFullYear()} PintuWeb · Galeri Aplikasi To-Do — centang terakhir milikmu.
+          © {new Date().getFullYear()} PintuWeb · Galeri Aplikasi To-Do
         </p>
       </footer>
       <SorotKartu />
